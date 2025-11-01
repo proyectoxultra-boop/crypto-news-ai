@@ -1,0 +1,222 @@
+Perfecto 🔥
+Aquí tienes todo el código necesario para que tu proyecto “Crypto News AI” funcione con una interfaz futurista, conectada a tu backend y lista para desplegar en Vercel o GitHub.
+
+
+---
+
+🧠 ESTRUCTURA FINAL
+
+crypto-news-ai/
+│
+├── backend/
+│   ├── generarAudio.js
+│   ├── generarScript.js
+│   ├── generarVideo.js
+│   ├── newsFetcher.js
+│   └── youtubeUpload.js
+│
+├── frontend/
+│   ├── app/
+│   │   ├── page.js
+│   │   └── layout.js
+│   ├── public/
+│   │   └── default.jpg
+│   ├── package.json
+│   ├── next.config.js
+│   ├── postcss.config.js
+│   └── tailwind.config.js
+│
+├── .env.example
+└── README.md
+
+
+---
+
+⚙️ FRONTEND — frontend/app/page.js
+
+'use client';
+import { useEffect, useState } from 'react';
+
+export default function Home() {
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/news')
+      .then(res => res.json())
+      .then(data => {
+        setNews(data);
+        setLoading(false);
+      })
+      .catch(err => console.error(err));
+  }, []);
+
+  if (loading) {
+    return (
+      <main className="flex items-center justify-center h-screen bg-black text-white">
+        <h1 className="text-3xl animate-pulse">🚀 Cargando noticias...</h1>
+      </main>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white p-8">
+      <h1 className="text-4xl font-bold text-center mb-8">
+        🤖 Crypto & Tecnología AI News
+      </h1>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {news.map((item, i) => (
+          <div
+            key={i}
+            className="bg-gray-900/70 p-5 rounded-2xl shadow-lg border border-gray-700 hover:border-blue-500 transition-all duration-300"
+          >
+            <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
+            <p className="text-gray-400 text-sm">{item.description}</p>
+            <a
+              href={item.url}
+              target="_blank"
+              className="text-blue-400 hover:text-blue-300 mt-3 inline-block"
+            >
+              Leer más →
+            </a>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+}
+
+
+---
+
+🌌 frontend/app/layout.js
+
+export const metadata = {
+  title: 'Crypto News AI',
+  description: 'Noticias de criptomonedas, tecnología y IA generadas automáticamente',
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="es">
+      <body className="font-sans bg-black text-white">
+        {children}
+      </body>
+    </html>
+  );
+}
+
+
+---
+
+⚡ frontend/package.json
+
+{
+  "name": "crypto-news-ai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "15.0.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "tailwindcss": "^3.4.10"
+  }
+}
+
+
+---
+
+⚙️ frontend/next.config.js
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+export default nextConfig;
+
+
+---
+
+🎨 frontend/tailwind.config.js
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}"
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+
+
+---
+
+🧩 frontend/postcss.config.js
+
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+
+
+---
+
+🧠 .env.example
+
+# --- IA ---
+OPENAI_API_KEY=sk-xxxxx
+ELEVENLABS_API_KEY=xxxxx
+
+# --- Noticias y Datos ---
+NEWS_API_KEY=xxxxx
+COINGECKO_API=https://api.coingecko.com/api/v3
+
+# --- YouTube ---
+YOUTUBE_CLIENT_ID=xxxxx
+YOUTUBE_CLIENT_SECRET=xxxxx
+YOUTUBE_REFRESH_TOKEN=xxxxx
+
+# --- Neon (Base de datos PostgreSQL) ---
+DATABASE_URL=postgresql://usuario:password@neon-host/dbname
+
+# --- Configuración general ---
+VIDEO_OUTPUT_DIR=./videos
+VIDEO_CATEGORY=crypto
+
+
+---
+
+🚀 PASOS PARA SUBIRLO A GITHUB Y VERCEL
+
+1. Crea una carpeta llamada frontend dentro de tu repositorio.
+
+
+2. Copia todo este código ahí.
+
+
+3. Asegúrate de tener las variables en Vercel → Settings → Environment Variables.
+
+
+4. Despliega nuevamente desde GitHub.
+
+
+5. ¡Listo! Tendrás una web visual futurista que muestra tus noticias IA 🚀
+
+
+
+
+---
+
