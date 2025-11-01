@@ -1,0 +1,7 @@
+cd /ruta/a/tu/proyecto                   # entra a la carpeta donde descomprimiste el ZIP  
+git init                                 # inicializa el repositorio local  
+git add .                                # añade todos los archivos  
+git commit -m "Versión inicial: Crypto News AI Visual"  
+git branch -M main                       # asegura que la rama se llame main  
+git remote add origin https://github.com/proyectoxultra-boop/crypto-news-ai.git  
+git push -u origin main                  # sube al repositorio remoto
